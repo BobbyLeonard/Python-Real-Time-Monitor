@@ -3,6 +3,10 @@ import os
 import pandas as pd
 import time
 import psutil
+import seaborn as sns
+sns.set()
+sns.set_context("paper")
+
 
 filepath = "c:\\users\\bobby\\desktop\\CPUPercent.txt"
 imagepath = "c:\\users\\bobby\\desktop\\www\\monitor.png"
@@ -58,9 +62,9 @@ try:
 					width = width / 2
 					if width < 0.5:
 						width = 0.5
-				 
-				df1.plot(ylim=(0,100), linewidth=width)
-					
+				
+				
+				df1.plot(ylim=(0,100), linewidth=width, alpha=0.5)
 				plt.Axes.set_autoscalex_on(plt, True)
 				plt.minorticks_off()
 				plt.xlabel("Samples: {}".format(DataPointCount))
