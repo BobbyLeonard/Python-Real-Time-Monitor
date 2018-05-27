@@ -2,6 +2,10 @@
 Collects data, saves to csv log and outputs a PNG graph of RAM and CPU % usage over time using psutil. 
 Then uses python3 http.server to serve result over network.
 
+**Seaborn Visualization**
+![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/monitorseaborn.jpg)
+
+**Standard Visualization**
 ![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/monitor.jpg)
 
 **libraries needed:**
@@ -11,6 +15,8 @@ Then uses python3 http.server to serve result over network.
   matplotlib
   
   pandas
+  
+  seaborn (optional, if not using see Standard Visualization below)
   
 **To install libraries:** 
 
@@ -32,3 +38,7 @@ psutil did not work for me on RPi3.
   
   Open your broswer and go to port 8000 on the machine running the script.
   Use an auto refresh extension to refresh the image.
+  
+  **To Use Standard Visualization:**
+  
+>Comment out lines 6, 7 and 8
