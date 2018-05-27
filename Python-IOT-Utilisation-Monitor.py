@@ -36,7 +36,6 @@ try:
 				outstring = outstring + str(item) 
 				outstring = outstring + ",\\"
 				bufferstring = outstring[:-1]
-				limits = len(outstring)
 				outstring = bufferstring
 				outstring + "\n\\"
 			
