@@ -6,11 +6,11 @@ Then uses python3 http.server to serve result over network.
 
 **libraries needed:**
 
-  -psutil
+  psutil
   
-  -matplotlib
+  matplotlib
   
-  -pandas
+  pandas
   
 **To install libraries:** 
 
