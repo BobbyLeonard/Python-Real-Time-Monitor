@@ -12,7 +12,7 @@ libraries needed:
   
   pandas
   
-  To install: "pip install <library>"
+To install: "pip install <library>"
 
 Remember to change the filepath and imagepath variables to suit your system.
 For non-Windows OS change os.system(cmd)
