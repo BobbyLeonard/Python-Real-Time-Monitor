@@ -24,11 +24,11 @@ psutil did not work for me on RPi3.
 
   >Create a new folder called WWW and set imagepath to save here.
   
-  **Open a command prompt:**
+  >Open a command prompt
   
-    >"cd WWW"
+  >"cd WWW"
     
-    >"python -m http.server"
+  >"python -m http.server"
   
   Open your broswer and go to port 8000 on the machine running the script.
   Use an auto refresh extension to refresh the image.
