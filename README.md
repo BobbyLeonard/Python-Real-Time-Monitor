@@ -20,7 +20,7 @@ Remember to change the filepath and imagepath variables to suit your system.
 For non-Windows OS change os.system(cmd)
 psutil did not work for me on RPi3.
 
-**To Run:**
+**To View Remotely:**
 
   >Create a new folder called WWW and set imagepath to save here.
   
