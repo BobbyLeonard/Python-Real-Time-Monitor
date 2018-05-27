@@ -7,7 +7,9 @@ Then use http.server to serve result over network.
 libraries needed:
 
   psutil
+  
   matplotlib
+  
   pandas
   
   To install: "pip install <library>"
