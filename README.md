@@ -16,7 +16,7 @@ Then uses python3 http.server to serve result over network.
 
 >e.g "pip install psutil"
 
-Remember to change the filepath and imagepath variables to suit your system.
+**Remember:** change the filepath and imagepath variables to suit your system.
 For non-Windows OS change os.system(cmd)
 psutil did not work for me on RPi3.
 
