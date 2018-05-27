@@ -4,24 +4,26 @@ Then use http.server to serve result over network.
 
 ![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/monitor.jpg)
 
-libraries needed:
+**libraries needed:
 
-  psutil
+  >psutil
   
-  matplotlib
+  >matplotlib
   
-  pandas
+  >pandas
   
-To install: "pip install <library>"
+**To install:** 
+
+>"pip install <library>"
 
 Remember to change the filepath and imagepath variables to suit your system.
 For non-Windows OS change os.system(cmd)
 psutil did not work for me on RPi3.
 
-To Run:
+**To Run:**
   Create a new folder called WWW and set imagepath to save here.
   
-  Open a command prompt:
+  **Open a command prompt:**
     "cd WWW"
     "python -m http.server"
   
