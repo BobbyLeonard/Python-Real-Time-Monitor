@@ -12,7 +12,7 @@ Then use http.server to serve result over network.
   
   -pandas
   
-**To install:** 
+**To install libraries:** 
 
 >e.g "pip install psutil"
 
