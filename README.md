@@ -4,7 +4,7 @@ Then use http.server to serve result over network.
 
 ![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/monitor.jpg)
 
-**libraries needed:
+**libraries needed:**
 
   >psutil
   
