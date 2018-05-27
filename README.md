@@ -6,26 +6,29 @@ Then use http.server to serve result over network.
 
 **libraries needed:**
 
-  >psutil
+  -psutil
   
-  >matplotlib
+  -matplotlib
   
-  >pandas
+  -pandas
   
 **To install:** 
 
->"pip install <library>"
+>e.g "pip install psutil"
 
 Remember to change the filepath and imagepath variables to suit your system.
 For non-Windows OS change os.system(cmd)
 psutil did not work for me on RPi3.
 
 **To Run:**
-  Create a new folder called WWW and set imagepath to save here.
+
+  >Create a new folder called WWW and set imagepath to save here.
   
   **Open a command prompt:**
-    "cd WWW"
-    "python -m http.server"
+  
+    >"cd WWW"
+    
+    >"python -m http.server"
   
   Open your broswer and go to port 8000 on the machine running the script.
   Use an auto refresh extension to refresh the image.
