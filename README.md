@@ -1,4 +1,4 @@
-# Python-IOT-Utilisation-Monitor
+# Python-Real-Time-Monitor
 Collects data, saves to csv log and outputs a PNG graph of RAM and CPU % usage over time 
 using psutil, pandas, matplotlib and seaborn. 
 Then uses python3 http.server to serve PNG over network.
