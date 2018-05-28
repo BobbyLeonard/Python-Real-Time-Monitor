@@ -2,6 +2,8 @@
 Collects data, saves to csv log and outputs a PNG graph of RAM and CPU % usage over time 
 using psutil, pandas, matplotlib and seaborn. 
 Then uses python3 http.server to serve PNG over network.
+Because a new image is being saved approximately every second, the webpage just needs to refreshed to make it appear as a stream.
+For this i use an auto refesh extension for Chrome.
 
 ## Seaborn Visualization
 
