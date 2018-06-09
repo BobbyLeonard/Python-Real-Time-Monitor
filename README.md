@@ -16,7 +16,7 @@ Collects CPU and RAM usage data, appends to a pandas dataframe and uses tkinter 
   
   pandas
   
-  seaborn (optional, if not using see Standard Visualization below)
+  seaborn 
   
 **To install libraries:** 
 
