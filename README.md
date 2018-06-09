@@ -32,7 +32,7 @@ psutil did not work for me on RPi3.
 
 **To View Remotely:**
 Until I have learnt some Flask,
-You can view the PNG remotely by using 
+you can view the PNG remotely by using 
 python3 http.server to serve PNG over network.
 Because a new image is being saved approximately every second, the webpage just needs to refreshed to make it appear as a stream.
 For this you can use an auto refesh extension for Chrome.
