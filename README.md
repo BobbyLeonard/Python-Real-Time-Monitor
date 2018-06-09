@@ -4,7 +4,7 @@
 Collects CPU and RAM usage data, appends to a pandas dataframe and uses tkinter for a GUI to display a live matplotlib PNG graph of RAM and CPU % usage over time. Easily tweaked to measure different items. 
 
 
-![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/seaborn.jpg)
+![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/sns.jpg)
 
 **libraries needed:**
   
