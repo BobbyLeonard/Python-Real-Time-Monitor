@@ -1,79 +1,89 @@
+import tkinter as tk
 import matplotlib.pyplot as plt
 import os
 import pandas as pd
-import time
 import psutil
 import seaborn as sns
+from datetime import datetime, timedelta, date, time
 sns.set()
-sns.set_context("paper")
+sns.set_context("notebook")
 
-
-filepath = "c:\\users\\bobby\\desktop\\CPUPercent.txt"
 imagepath = "c:\\users\\bobby\\desktop\\www\\monitor.png"
-
-def WriteToFile(item, location, mode):
-		writepath = open(location, mode)
-		writepath.write(item)
-		writepath.close()
-
-		
-cmd = "cd. > c:\\users\\bobby\\desktop\\CPUPercent.txt"
-# Create or overwrite the log file
-os.system(cmd)		
-WriteToFile("Time,CPU#1,CPU#2,CPU#3,CPU#4,RAM%\n", filepath, 'a+')
-clock = int(time.strftime("%S", time.localtime()))
+clock = datetime.now()
+startClock = datetime.now()
+df = pd.DataFrame()
+width = 2 #Line width for graph
 DataPointCount = 0
-global width
-width = 2
 
-try:
-	while(True):
-		#If clock var is not equal to actual clock, run this...
-		if clock != int(time.strftime("%S", time.localtime())):
-			clock = int(time.strftime("%S", time.localtime()))
-			outstring = ""
-			for item in list(psutil.cpu_percent(interval=None, percpu=True)):
-				outstring = outstring + str(item) 
-				outstring = outstring + ",\\"
-				bufferstring = outstring[:-1]
-				outstring = bufferstring
-				outstring + "\n\\"
-			
-			mem = list(psutil.virtual_memory())
-			output = "," + str(mem[2])
-			finaloutput = outstring[:-1] + output
-			WriteToFile(time.strftime("%H:%M:%S", time.localtime()), filepath, 'a+')
-			WriteToFile(",", filepath, 'a+')
-			WriteToFile(finaloutput, filepath, 'a+')
-			WriteToFile("\n", filepath, 'a+')
-			df1 = pd.read_csv(filepath)
-			df1['AvgCPU%'] = (df1['CPU#1'] + df1['CPU#2'] + df1['CPU#3'] + df1['CPU#4']) / 4
-			df1.set_index("Time",drop=False,inplace=True)
-			df1.drop('CPU#1', axis=1, inplace=True)
-			df1.drop('CPU#2', axis=1, inplace=True)
-			df1.drop('CPU#3', axis=1, inplace=True)
-			df1.drop('CPU#4', axis=1, inplace=True)
-			os.system('cls')
-			
-			if DataPointCount > 2:
-				plt.figure()
-				if DataPointCount % 500 == 0:
-					width = width / 2
-					if width < 0.5:
-						width = 0.5
-				
-				
-				df1.plot(ylim=(0,100), linewidth=width, alpha=0.5)
-				plt.Axes.set_autoscalex_on(plt, True)
-				plt.minorticks_off()
-				plt.xlabel("Samples: {}".format(DataPointCount))
-				plt.ylabel("% Utilisation")
-				plt.savefig(imagepath,format="png")
-				print("pic saved")
-				plt.close('all')
-			DataPointCount += 1
+class TkLemon():
+	def __init__(self):
+		self.canvas = tk.Canvas(root, width = 950, height = 1200)
+		self.img = tk.PhotoImage(file=imagepath)
+		self.imgArea = self.canvas.create_image(0, 0, anchor = 'nw', image = self.img)
+		self.canvas.pack()
+		root.after(100, self.changeImg)
+		root.after(101, self.chkRes)	
 
-except(KeyboardInterrupt, SystemExit):
-	os.system("cls")
-	exit()
+
+	def changeImg(self):
+		try:
+			self.img = tk.PhotoImage(file=imagepath)
+			self.canvas.itemconfig(self.imgArea, image = self.img)
+			root.after(100, self.changeImg)
+		except:
+			#if theres an error, wait and try next snapshot
+			root.after(1, self.changeImg)
 			
+	def chkRes(self):
+		try:
+			#If clock var is not equal to actual clock, run this...
+			global clock, df, DataPointCount, width, startClock
+			if clock != datetime.now():
+				#labelClock = datetime.now
+				TD = datetime.now() - startClock
+				print(TD)
+				CpuVal = psutil.cpu_percent(interval=None, percpu=False)
+				RamVal = psutil.virtual_memory()[2]
+				df2 = pd.DataFrame({'AvgCPU%':CpuVal, 'RAM%':RamVal, 'Time':datetime.now().strftime("%S")}, index=[DataPointCount])
+				df = df.append(df2)
+				#df.set_index("Time",drop=True,inplace=True)
+				os.system('cls')
+				
+				if DataPointCount > 2: #You have enough data, begin plotting.
+					fig = plt.figure()
+					if DataPointCount % 500 == 0: #As the data increases, thin the line.
+						width = width / 1.3
+						if width < 0.5:
+							width = 0.5
+					
+					
+					df.plot(ylim=(0,100), linewidth=width, alpha=0.5)
+					plt.Axes.set_autoscalex_on(plt, True)
+					plt.minorticks_off()
+					TD = str(TD)
+					plt.xlabel('Samples')
+					plt.ylabel("% Utilisation")
+					TD = TD.split('.')[0]
+					plt.title("{} samples over {}".format(DataPointCount, TD))
+					plt.savefig(imagepath,format="png",dpi=145)
+					print("pic saved")
+					plt.close('all')
+				DataPointCount += 1
+				clock = datetime.now()
+				root.after(101, self.chkRes)	
+			
+		except(KeyboardInterrupt, SystemExit):
+			os.system("cls")
+			exit()
+
+root = tk.Tk()
+root.geometry("950x1200")
+root.title("Python-Real-Time-Monitor")
+app = TkLemon()
+
+while(True):
+	try:
+		root.mainloop()
+	except(KeyboardInterrupt, SystemExit):
+		os.system("cls")
+		exit()
