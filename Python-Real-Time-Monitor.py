@@ -5,10 +5,19 @@ import pandas as pd
 import psutil
 import seaborn as sns
 from datetime import datetime, timedelta, date, time
-sns.set()
-sns.set_context("notebook")
+from shutil import copyfile
 
-imagepath = "c:\\users\\bobby\\desktop\\www\\monitor.png"
+sns.set()
+sns.set_context("paper")
+sns.set_style("ticks", {'axes.facecolor': '#EAEAF2', 'axes.grid': True, 'grid.color': '.8', 'grid.linestyle': u'-'})
+sns.set_palette("bright")
+
+imagepath = "c:\\users\\bobby\\desktop\\www\\monitor.png" 
+#Change for your machine
+
+copyfile('c:\\users\\bobby\\desktop\\www\\loading.png', 'c:\\users\\bobby\\desktop\\www\\monitor.png')
+#Change for your machine, loading.png is required, available from github page
+
 clock = datetime.now()
 startClock = datetime.now()
 df = pd.DataFrame()
@@ -39,14 +48,11 @@ class TkLemon():
 			#If clock var is not equal to actual clock, run this...
 			global clock, df, DataPointCount, width, startClock
 			if clock != datetime.now():
-				#labelClock = datetime.now
 				TD = datetime.now() - startClock
-				print(TD)
 				CpuVal = psutil.cpu_percent(interval=None, percpu=False)
 				RamVal = psutil.virtual_memory()[2]
 				df2 = pd.DataFrame({'AvgCPU%':CpuVal, 'RAM%':RamVal, 'Time':datetime.now().strftime("%S")}, index=[DataPointCount])
 				df = df.append(df2)
-				#df.set_index("Time",drop=True,inplace=True)
 				os.system('cls')
 				
 				if DataPointCount > 2: #You have enough data, begin plotting.
