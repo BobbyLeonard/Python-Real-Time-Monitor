@@ -1,6 +1,8 @@
 # Python-Real-Time-Monitor
 
+
 Collects CPU and RAM usage data, appends to a pandas dataframe and uses tkinter for a GUI to display a realtime matplotlib PNG graph of RAM and CPU % usage over time 
+
 
 ![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/seaborn.jpg)
 
