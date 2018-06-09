@@ -22,7 +22,8 @@ Collects CPU and RAM usage data, appends to a pandas dataframe and uses tkinter 
 
 **Remember:** 
 >Create a new folder called WWW and set imagepath to save here.
-change the imagepath variable to suit your system.
+
+Change the imagepath variable to suit your system.
 For non-Windows OS change os.system(cmd)
 psutil did not work for me on RPi3.
 
