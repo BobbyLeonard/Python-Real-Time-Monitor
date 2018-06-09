@@ -1,19 +1,20 @@
 # Python-Real-Time-Monitor
-Collects data, saves to csv log and outputs a PNG graph of RAM and CPU % usage over time 
-using psutil, pandas, matplotlib and seaborn. 
-Then uses python3 http.server to serve PNG over network.
+Collects CPU and RAM usage data, appends to a pandas dataframe and uses Tkinter as a GUI to display a realtime matplotlib PNG graph of RAM and CPU % usage over time 
+
+## To View online
+Until I have leanrt some Flask,
+You can view the PNG remotely by using 
+python3 http.server to serve PNG over network.
 Because a new image is being saved approximately every second, the webpage just needs to refreshed to make it appear as a stream.
-For this i use an auto refesh extension for Chrome.
+For this you can use an auto refesh extension for Chrome.
 
 ## Seaborn Visualization
 
 ![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/monitorseaborn.jpg)
 
-## Standard Visualization
-
-![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/monitor.jpg)
-
 **libraries needed:**
+  
+  tkinter
 
   psutil
   
@@ -44,6 +45,4 @@ psutil did not work for me on RPi3.
   Open your broswer and go to port 8000 on the machine running the script.
   Use an auto refresh extension to refresh the image.
   
-  **To Use Standard Visualization:**
   
->Comment out lines 6, 7 and 8
