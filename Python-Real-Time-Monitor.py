@@ -51,7 +51,9 @@ class TkLemon():
 				TD = datetime.now() - startClock
 				CpuVal = psutil.cpu_percent(interval=None, percpu=False)
 				RamVal = psutil.virtual_memory()[2]
-				df2 = pd.DataFrame({'AvgCPU%':CpuVal, 'RAM%':RamVal, 'Time':datetime.now().strftime("%S")}, index=[DataPointCount])
+				df2 = pd.DataFrame({'AvgCPU%':CpuVal, 
+						    'RAM%':RamVal, 
+						    'Time':datetime.now().strftime("%S")}, index=[DataPointCount])
 				df = df.append(df2)
 				os.system('cls')
 				
