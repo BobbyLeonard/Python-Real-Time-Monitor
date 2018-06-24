@@ -7,10 +7,13 @@ import seaborn as sns
 from datetime import datetime, timedelta, date, time
 from shutil import copyfile
 
+
 sns.set()
 sns.set_context("paper")
 sns.set_style("ticks", {'axes.facecolor': '#EAEAF2', 'axes.grid': True, 'grid.color': '.8', 'grid.linestyle': u'-'})
 sns.set_palette("bright")
+
+
 
 imagepath = "c:\\users\\bobby\\desktop\\www\\monitor.png" 
 #Change for your machine
@@ -51,10 +54,11 @@ class TkLemon():
 				TD = datetime.now() - startClock
 				CpuVal = psutil.cpu_percent(interval=None, percpu=False)
 				RamVal = psutil.virtual_memory()[2]
-				df2 = pd.DataFrame({'AvgCPU%':CpuVal, 
-						    'RAM%':RamVal, 
-						    'Time':datetime.now().strftime("%S")}, index=[DataPointCount])
+				df2 = pd.DataFrame({'CPU':CpuVal, 'RAM':RamVal, 'Time':datetime.now().strftime("%S")}, index=[DataPointCount])
 				df = df.append(df2)
+				df['meanCPU'] = df['CPU'].mean()
+				df['minCPU'] = df['CPU'].min()
+				df['maxCPU'] = df['CPU'].max()
 				os.system('cls')
 				
 				if DataPointCount > 2: #You have enough data, begin plotting.
@@ -74,6 +78,7 @@ class TkLemon():
 					TD = TD.split('.')[0]
 					plt.title("{} samples over {}".format(DataPointCount, TD))
 					plt.savefig(imagepath,format="png",dpi=145)
+					print(p.cwd())
 					print("pic saved")
 					plt.close('all')
 				DataPointCount += 1
@@ -92,6 +97,7 @@ app = TkLemon()
 while(True):
 	try:
 		root.mainloop()
+		
 	except(KeyboardInterrupt, SystemExit):
 		os.system("cls")
 		exit()
