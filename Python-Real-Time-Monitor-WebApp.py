@@ -1,17 +1,14 @@
 import matplotlib
 matplotlib.use('Agg')
-
 from io import BytesIO
 import base64
-
 import matplotlib.pyplot as plt
 import os
 import pandas as pd
-import time
 import psutil
 import seaborn as sns
 from flask import Flask
-from datetime import datetime, timedelta, date, time
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -71,9 +68,9 @@ def index():
                             <meta name="author" content="">
                             <meta http-equiv="refresh" content="1">
                             <!-- ^^^ auto refresh ^^^ -->
-                            <link rel="icon" href="{{ url_for('static', filename='favicon.jpg') }}">
                             <!-- Latest compiled and minified CSS -->
-                            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+                            <link rel="stylesheet" 
+                                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
                             <title>Python Monitor</title>
                         </head>
                             <body>
