@@ -17,24 +17,24 @@ Comes in 2 versions.
 
 **Libraries needed:**
   
-  >psutil
+    >psutil
   
-  >matplotlib
+    >matplotlib
   
-  >pandas
+    >pandas
   
-  >seaborn
+    >seaborn
   
 ***GUI:***
 
-  >tkinter
+    >tkinter
 
 ***Webapp:***
 
-  >flask
+    >flask
 
-  >flask_socketio
+    >flask_socketio
   
 **To install libraries:** 
 
->"pip install psutil"
+    >pip install psutil
