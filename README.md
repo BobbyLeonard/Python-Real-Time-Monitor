@@ -10,6 +10,7 @@ Comes in 2 versions.
 >The Webapp version uses Flask and serves an auto refreshing page from your ip on port 80.
 >'index.html' should be put in a folder called templates which should be in
 >the same folder as Python-Real-Time-Monitor-WebApp.py
+>Also displays connection info in the terminal
 
 
 ![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/sns.jpg)
