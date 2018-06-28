@@ -7,7 +7,7 @@ Comes in 2 versions.
 >The GUI version uses tkinter as an interface to display the graph.
 
 >The Webapp version uses Flask and serves an auto refreshing page from your ip on port 80.
->index.html should be put in a folder called templpates which should be in
+>index.html should be put in a folder called templates which should be in
 >the same folder as Python-Real-Time-Monitor-WebApp.py
 
 
@@ -25,15 +25,15 @@ Comes in 2 versions.
   
   seaborn
   
-    ***GUI:***
+***GUI:***
 
-      tkinter
+  tkinter
 
-    ***Webapp:***
+***Webapp:***
 
-      flask
+  flask
 
-      flask_socketio
+  flask_socketio
   
 **To install libraries:** 
 
