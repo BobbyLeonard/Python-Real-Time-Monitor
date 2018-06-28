@@ -31,13 +31,13 @@ def test_connect():
     disconnectCount = 0
     emit('my response', {'data': 'Connected'})
     connecttime = time.time()
-    print('Client connected:  {}'.format(datetime.now()))
+    print('Client connected:    {}'.format(datetime.now().strftime("%H:%M:%S %d/%m/%y")))
 
 @socketio.on('disconnect', namespace='/')
 def test_disconnect():
     global disconnectCount, DataPointCount, firstrequest, df
     disconnectCount += 1
-    print('Client disconnected:  {}'.format(datetime.now()))
+    print('Client disconnected: {}'.format(datetime.now().strftime("%H:%M:%S %d/%m/%y")))
 
 @application.route('/')
 def index():
@@ -97,6 +97,8 @@ def index():
 
                 DataPointCount += 1
                 plt.close('all')
+
+
 
         except(KeyboardInterrupt, SystemExit):
             return 0
