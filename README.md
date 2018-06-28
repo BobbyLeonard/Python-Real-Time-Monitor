@@ -15,8 +15,6 @@ Comes in 2 versions.
 
 **libraries needed:**
   
-  flask
-
   psutil
   
   matplotlib
