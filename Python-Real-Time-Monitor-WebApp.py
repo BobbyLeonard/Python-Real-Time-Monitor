@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import psutil
 import seaborn as sns
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from datetime import datetime
 import time
 from flask_socketio import SocketIO, emit
@@ -31,13 +31,15 @@ def test_connect():
     disconnectCount = 0
     emit('my response', {'data': 'Connected'})
     connecttime = time.time()
-    print('Client connected:    {}'.format(datetime.now().strftime("%H:%M:%S %d/%m/%y")))
+    ip = request.environ['REMOTE_ADDR']
+    print('{} connected    @ {}'.format(ip, datetime.now().strftime("%H:%M:%S on %d/%m/%y")))
 
 @socketio.on('disconnect', namespace='/')
 def test_disconnect():
     global disconnectCount, DataPointCount, firstrequest, df
     disconnectCount += 1
-    print('Client disconnected: {}'.format(datetime.now().strftime("%H:%M:%S %d/%m/%y")))
+    ip = request.environ['REMOTE_ADDR']
+    print('{} disconnected @ {}'.format(ip, datetime.now().strftime("%H:%M:%S on %d/%m/%y")))
 
 @application.route('/')
 def index():
