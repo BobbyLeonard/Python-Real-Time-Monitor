@@ -3,15 +3,17 @@ matplotlib.use('Agg')
 from io import BytesIO
 import base64
 import matplotlib.pyplot as plt
-import os
 import pandas as pd
 import psutil
 import seaborn as sns
-from flask import Flask
+from flask import Flask, render_template
 from datetime import datetime
+import time
+from flask_socketio import SocketIO, emit
 
-
-app = Flask(__name__)
+application = Flask(__name__)
+application.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(application)
 
 sns.set()
 sns.set_context("paper")
@@ -19,14 +21,34 @@ sns.set_style("ticks", {'axes.facecolor': '#EAEAF2', 'axes.grid': True, 'grid.co
 sns.set_palette("bright")
 DataPointCount = 0
 df = pd.DataFrame()
-startClock = datetime.now()
-clock = datetime.now()
+firstrequest = False
+disconnectCount = 0
+connecttime = time.time()
 
-@app.route('/')
+@socketio.on('connect', namespace='/')
+def test_connect():
+    global disconnectCount, connecttime
+    disconnectCount = 0
+    emit('my response', {'data': 'Connected'})
+    connecttime = time.time()
+    print('Client connected:  {}'.format(datetime.now()))
+
+@socketio.on('disconnect', namespace='/')
+def test_disconnect():
+    global disconnectCount, DataPointCount, firstrequest, df
+    disconnectCount += 1
+    print('Client disconnected:  {}'.format(datetime.now()))
+
+@application.route('/')
 def index():
-    global width, DataPointCount, df, clock, startClock
+    global width, DataPointCount, df, clock, startClock, firstrequest, connecttime
     width = 2
-    while (True):
+    if not firstrequest:
+        firstrequest = True
+        startClock = datetime.now()
+        clock = datetime.now()
+
+    while True:
         try:
             # If clock var is not equal to actual clock, run this...
             if clock != datetime.now():
@@ -41,7 +63,6 @@ def index():
                 df['minCPU%'] = df['AvgCPU%'].min()
                 df['maxCPU%'] = df['AvgCPU%'].max()
                 df.set_index("Time", drop=True, inplace=True)
-                os.system('cls')
 
                 if DataPointCount > 2:
                     plt.figure()
@@ -54,53 +75,32 @@ def index():
                     plt.Axes.set_autoscalex_on(plt, True)
                     plt.minorticks_off()
                     TD = str(TD)
-                    plt.xlabel('Samples')
+                    plt.xlabel('Samples: {}'.format(DataPointCount))
                     plt.ylabel("% Utilisation")
                     TD = TD.split('.')[0]
-                    plt.title("{} samples over {}".format(DataPointCount, TD))
+                    plt.title("Time:\n{}".format(TD))
 
-                    Imageoutputhtml = '''
-                    <html>
-                        <head>
-                            <meta charset="utf-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-                            <meta name="description" content="">
-                            <meta name="author" content="">
-                            <meta http-equiv="refresh" content="1">
-                            <!-- ^^^ auto refresh ^^^ -->
-                            <!-- Latest compiled and minified CSS -->
-                            <link rel="stylesheet" 
-                                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-                            <title>Python Monitor</title>
-                        </head>
-                            <body>
-                            <div class="row">
-                            <div class="mx-auto text-center">
-                                <img src="data:image/jpeg;base64,{}" alt="PyMon">
-                            </div>
-                            </div>
-                            </body>
-                        </html>
-                    '''
                     img_base64 = BytesIO()
                     plt.savefig(img_base64, format='jpg', dpi=120)
                     img = base64.b64encode(img_base64.getvalue())
                     img = str(img)
                     img = img[2:-1]
                     DataPointCount += 1
-                    print("pic saved")
                     plt.close('all')
-                    return Imageoutputhtml.format(img)
+                    if time.time() - connecttime > 10:
+                        DataPointCount = 0
+                        firstrequest = False
+                        df = pd.DataFrame()
+                        connecttime = time.time()
+                    else:
+                        return render_template('index.html', value=img)
 
                 DataPointCount += 1
-                print("pic saved")
                 plt.close('all')
 
-
-
         except(KeyboardInterrupt, SystemExit):
-            os.system("cls")
             return 0
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=False)
+    print('Server Up !')
+    socketio.run(application, host='0.0.0.0', port=80)
