@@ -13,26 +13,26 @@ Comes in 2 versions.
 
 ![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/sns.jpg)
 
-**libraries needed:**
+**Libraries needed:**
   
-  psutil
+  >psutil
   
-  matplotlib
+  >matplotlib
   
-  pandas
+  >pandas
   
-  seaborn
+  >seaborn
   
 ***GUI:***
 
-  tkinter
+  >tkinter
 
 ***Webapp:***
 
-  flask
+  >flask
 
-  flask_socketio
+  >flask_socketio
   
 **To install libraries:** 
 
->e.g "pip install psutil"
+>"pip install psutil"
