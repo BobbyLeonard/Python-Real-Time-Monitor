@@ -5,6 +5,7 @@ then display a live matplotlib PNG graph of RAM and CPU % usage over time.
 Comes in 2 versions.
 
 >The GUI version uses tkinter as an interface to display the graph.
+>'loading.png' is required, set your paths in the script 
 
 >The Webapp version uses Flask and serves an auto refreshing page from your ip on port 80.
 >'index.html' should be put in a folder called templates which should be in
