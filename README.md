@@ -1,9 +1,14 @@
 # Python-Real-Time-Monitor
+
 Collects CPU and RAM usage data, appends to a pandas dataframe, 
 then display a live matplotlib PNG graph of RAM and CPU % usage over time.
 Comes in 2 versions.
-The GUI version uses tkinter as an interface to display the graph.
-The Webapp version uses Flask and serves an auto refreshing image from your ip on port 80.
+
+>The GUI version uses tkinter as an interface to display the graph.
+
+>The Webapp version uses Flask and serves an auto refreshing page from your ip on port 80.
+>index.html should be put in a folder called templpates which should be in
+>the same folder as Python-Real-Time-Monitor-WebApp.py
 
 
 ![alt text](https://github.com/BobbyLeonard/Python-Utilisation-Monitor/blob/master/sns.jpg)
@@ -20,15 +25,15 @@ The Webapp version uses Flask and serves an auto refreshing image from your ip o
   
   seaborn
   
-  ***GUI:***
-  
-  tkinter
-  
-  ***Webapp:***
-  
-  flask
-  
-  flask_socketio
+    ***GUI:***
+
+      tkinter
+
+    ***Webapp:***
+
+      flask
+
+      flask_socketio
   
 **To install libraries:** 
 
