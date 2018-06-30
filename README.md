@@ -25,7 +25,6 @@ Comes in 2 versions.
   
     seaborn
     
-    gevent
   
 ***GUI:***
 
@@ -36,6 +35,8 @@ Comes in 2 versions.
     flask
 
     flask_socketio
+    
+    gevent
   
 **To install libraries:** 
 
