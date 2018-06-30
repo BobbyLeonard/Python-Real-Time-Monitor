@@ -24,6 +24,8 @@ Comes in 2 versions.
     pandas
   
     seaborn
+    
+    gevent
   
 ***GUI:***
 
