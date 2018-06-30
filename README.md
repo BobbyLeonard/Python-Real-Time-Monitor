@@ -8,7 +8,7 @@ Comes in 2 versions.
 >'loading.png' is required, set your paths in the script 
 
 >The Webapp version uses Flask and serves an auto refreshing page from your ip on port 80.
->'index.html' should be put in a folder called templates which should be in
+>'index.html' should be put in a folder called templates.This folder should be in
 >the same folder as Python-Real-Time-Monitor-WebApp.py
 >Also displays connection info in the terminal
 
